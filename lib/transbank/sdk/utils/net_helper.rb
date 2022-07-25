@@ -32,7 +32,7 @@ module Transbank
 
         request_headers = {'Content-Type' => 'application/json'}.merge(headers || {})
         request = Net::HTTP::Put.new(uri.path, request_headers)
-        request.body = JSON.generate(body)
+        request.body = JSON.generate(body, { quirks_mode: true })
         http.request(request)
       end
 
@@ -43,7 +43,7 @@ module Transbank
 
         request_headers = {'Content-Type' => 'application/json'}.merge(headers || {})
         request = Net::HTTP::Delete.new(uri.path, request_headers)
-        request.body = JSON.generate(body)
+        request.body = JSON.generate(body, { quirks_mode: true })
         http.request(request)
       end
 
